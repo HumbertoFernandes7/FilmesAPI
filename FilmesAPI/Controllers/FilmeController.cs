@@ -1,4 +1,5 @@
-﻿using FilmesAPI.Data;
+﻿using AutoMapper;
+using FilmesAPI.Data;
 using FilmesAPI.Data.Dtos;
 using FilmesAPI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,24 +11,24 @@ namespace FilmesAPI.Controllers
     public class FilmeController : ControllerBase
     {
         private FilmeContext _context;
+        private IMapper _mapper;
 
-        public FilmeController(FilmeContext context)
+        public FilmeController(FilmeContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
+
 
         [HttpPost]
         public IActionResult AdicionaFilme([FromBody] CreateFilmeDto filmeDto)
         {
-            Filme filme = new Filme();
-
-            filme.Titulo = filmeDto.Titulo;
-            filme.Duracao = filmeDto.Duracao;
-
+            Filme filme = _mapper.Map<Filme>(filmeDto);
             _context.Filmes.Add(filme);
             _context.SaveChanges();
             return CreatedAtAction(nameof(buscaFilmePorId), new { Id = filme.Id }, filme);
         }
+
 
         [HttpGet]
         public IEnumerable<Filme> BuscaFilmes()
@@ -35,16 +36,19 @@ namespace FilmesAPI.Controllers
             return _context.Filmes;
         }
 
+
         [HttpGet("{id}")]
         public IActionResult buscaFilmePorId(int id)
         {
             Filme filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
             if (filme != null)
             {
-                return Ok(filme);
+                ReadFilmeDto filmeDto = _mapper.Map<ReadFilmeDto>(filme);
+                return Ok(filmeDto);
             }
             return NotFound();
         }
+
 
         [HttpPut("{id}")]
         public IActionResult AtualizaFilme(int id,[FromBody] UpdateFilmeDto filmeDto)
@@ -54,14 +58,11 @@ namespace FilmesAPI.Controllers
             {
                 return NotFound();
             }
-            Filme filme = new Filme();
-
-            filmeEncontrado.Titulo = filmeDto.Titulo;
-            filmeEncontrado.Duracao = filmeDto.Duracao;
+            _mapper.Map(filmeDto, filmeEncontrado);
             _context.SaveChanges();
-
-            return Ok(filmeEncontrado);
+            return NoContent();
         }
+
 
         [HttpDelete("{id}")]
         public IActionResult DeletaFilme(int id)

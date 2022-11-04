@@ -2,9 +2,8 @@
 
 namespace FilmesAPI.Data.Dtos
 {
-    public class CreateFilmeDto
+    public class ReadFilmeDto
     {
-
         [Required(ErrorMessage = "{0} não pode ser nulo")]
         public string Titulo { get; set; }
 

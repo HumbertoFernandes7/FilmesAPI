@@ -18,4 +18,3 @@ namespace FilmesAPI.Data.Dtos
         public int Duracao { get; set; }
     }
 }
-}

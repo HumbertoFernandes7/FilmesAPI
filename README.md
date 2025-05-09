@@ -8,7 +8,6 @@ Uma **API RESTful** em **ASP.NET Core** para cadastro, consulta, atualização e
 - ASP.NET Core Web API  
 - Entity Framework Core  
 - Banco de dados relacional (SQL Server, SQLite, etc.)  
-- Swashbuckle (Swagger) :contentReference[oaicite:1]{index=1}
 
 ## Como rodar
 1. **Clone o repositório**  

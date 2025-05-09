@@ -8,9 +8,3 @@ Uma **API RESTful** em **ASP.NET Core** para cadastro, consulta, atualização e
 - ASP.NET Core Web API  
 - Entity Framework Core  
 - Banco de dados relacional (SQL Server, SQLite, etc.)  
-
-## Como rodar
-1. **Clone o repositório**  
-   ```bash
-   git clone https://github.com/HumbertoFernandes7/FilmesAPI.git
-   cd FilmesAPI/FilmesAPI

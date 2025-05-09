@@ -1,7 +1,7 @@
 # FilmesAPI
 
 ## Descrição
-Uma **API RESTful** em **ASP.NET Core** para cadastro, consulta, atualização e remoção de filmes, utilizando **Entity Framework Core** para persistência e **Swagger** para documentação interativa :contentReference[oaicite:0]{index=0}.
+Uma **API RESTful** em **ASP.NET Core** para cadastro, consulta, atualização e remoção de filmes, utilizando **Entity Framework Core** para persistência
 
 ## Tecnologias
 - .NET 7 SDK  
